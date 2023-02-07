@@ -1,0 +1,12 @@
+spring:
+  datasource:
+    url: jdbc:h2:mem:db1
+    username: local
+    password: changeme
+    schema: public
+    driverClassName: org.h2.Driver
+  h2:
+    console.enabled: true
+  flyway:
+
+    locations: classpath:/db/migration
