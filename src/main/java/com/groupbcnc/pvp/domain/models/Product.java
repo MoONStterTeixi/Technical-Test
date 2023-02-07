@@ -1,9 +1,7 @@
 package com.groupbcnc.pvp.domain.models;
 
-import java.text.DecimalFormat;
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
 import com.groupbcnc.shared.domain.exceptions.ViolatedRuleException;
 import com.groupbcnc.shared.domain.rules.CanApplyPromotionToProductRule;
 
@@ -25,7 +23,7 @@ public class Product {
         this.price = price;
     }
 
-    public Pvp apply(Promotion promotion, Date applicationTime) throws ViolatedRuleException {
+    public Pvp apply(Promotion promotion, LocalDateTime applicationTime) throws ViolatedRuleException {
         CanApplyPromotionToProductRule.validate(this, promotion, applicationTime);
         return new Pvp(
                 this.price.getValue(),

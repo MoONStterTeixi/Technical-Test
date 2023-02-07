@@ -1,8 +1,8 @@
 package com.groupbcnc.pvp.domain.models;
 
-import java.util.Date;
 import java.text.ParseException;
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Currency;
 import java.util.UUID;
 import org.junit.Test;
@@ -12,16 +12,22 @@ import com.groupbcnc.shared.domain.exceptions.ViolatedRuleException;
 
 public class ProductTest {
 
+    private static final DateTimeFormatter SOME_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
     private static final UUID SOME_PRODUCT_CODE = UUID.randomUUID();
     private static final UUID SOME_PROMOTION_CODE = UUID.randomUUID();
     private static final int SOME_PRODUCT_ID = 1;
     private static final int SOME_OTHER_PRODUCT_ID = 2;
     private static final int SOME_BRAND_ID = 1;
     private static final int SOME_PROMOTION_ID = 1;
-    private static Date SOME_PROMOTION_START_DATE = Date.from(Instant.parse("2023-02-01T00:00:00Z"));
-    private static Date SOME_PROMOTION_END_DATE = Date.from(Instant.parse("2023-02-10T00:00:00Z"));
-    private static Date SOME_IN_RANGE_DATE = Date.from(Instant.parse("2023-02-05T00:00:00Z"));
-    private static Date SOME_OUT_RANGE_DATE = Date.from(Instant.parse("2023-02-12T00:00:00Z"));
+    private static LocalDateTime SOME_PROMOTION_START_DATE = LocalDateTime.parse("2023-02-01 00:00:00",
+            SOME_FORMATER);
+    private static LocalDateTime SOME_PROMOTION_END_DATE = LocalDateTime.parse("2023-02-10 00:00:00",
+            SOME_FORMATER);
+    private static LocalDateTime SOME_IN_RANGE_DATE = LocalDateTime.parse("2023-02-05 00:00:00",
+            SOME_FORMATER);
+    private static LocalDateTime SOME_OUT_RANGE_DATE = LocalDateTime.parse("2023-02-12 00:00:00",
+            SOME_FORMATER);
     private static final float SOME_PRICE_VALUE = 423f;
     private static final float SOME_PVP_VALUE = 372.24f;
     private static final int SOME_OFF_APPLIED = 12;
@@ -40,7 +46,6 @@ public class ProductTest {
 
     @Test
     public void throwInvalidPromotionWhenPromotionIsForOtherProduct() {
-
         assertThrows(ViolatedRuleException.class, () -> {
             SOME_PRODUCT.apply(SOME_OTHER_PROMOTION, SOME_IN_RANGE_DATE);
         }, "Cant apply the promotion " + SOME_PROMOTION_CODE + " to the product " + SOME_PRODUCT_CODE);

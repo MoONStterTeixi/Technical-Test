@@ -1,7 +1,7 @@
 package com.groupbcnc.pvp.infraestructure.controllers;
 
+import java.time.LocalDateTime;
 import java.util.Currency;
-import java.util.Date;
 import java.util.UUID;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -23,12 +23,13 @@ public class GetPvpController {
     }
 
     @GetMapping(value = "/{brandCode}/{productCode}/{currency}/pvp")
-    public @ResponseBody ResponseEntity<GetPvpCommandResult> getTestData(
+    public @ResponseBody ResponseEntity<GetPvpCommandResult> getPvp(
             @PathVariable UUID brandCode,
             @PathVariable UUID productCode,
             @PathVariable String currency) throws ProductNotFoundException, ViolatedRuleException {
 
-        GetPvpCommand command = new GetPvpCommand(brandCode, productCode, Currency.getInstance(currency), new Date());
+        GetPvpCommand command = new GetPvpCommand(brandCode, productCode, Currency.getInstance(currency),
+                LocalDateTime.now());
 
         GetPvpCommandResult commandResult = this.useCase.execute(command);
 

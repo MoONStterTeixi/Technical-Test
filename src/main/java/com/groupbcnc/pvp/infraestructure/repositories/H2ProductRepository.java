@@ -1,11 +1,8 @@
 package com.groupbcnc.pvp.infraestructure.repositories;
 
-import java.util.List;
 import java.util.UUID;
-
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
-
 import com.groupbcnc.pvp.domain.exceptions.ProductNotFoundException;
 import com.groupbcnc.pvp.domain.models.Product;
 import com.groupbcnc.pvp.domain.repositories.ProductRepository;

@@ -2,11 +2,15 @@ package com.groupbcnc.pvp.infraestructure.mappers;
 
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.UUID;
 import org.springframework.jdbc.core.RowMapper;
 import com.groupbcnc.pvp.domain.models.Promotion;
 
 public class PromotionRowMapper implements RowMapper<Promotion> {
+
+    private static final DateTimeFormatter SOME_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
 
     @Override
     public Promotion mapRow(ResultSet rs, int rowNum) throws SQLException {
@@ -16,8 +20,8 @@ public class PromotionRowMapper implements RowMapper<Promotion> {
                 rs.getInt("product_id"),
                 rs.getInt("off"),
                 rs.getInt("priority"),
-                rs.getDate("start_date"),
-                rs.getDate("end_date"));
+                LocalDateTime.parse(rs.getString("start_date"), SOME_FORMATER),
+                LocalDateTime.parse(rs.getString("end_date"), SOME_FORMATER));
     }
 
 }

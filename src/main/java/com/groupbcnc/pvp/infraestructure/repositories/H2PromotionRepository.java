@@ -1,6 +1,6 @@
 package com.groupbcnc.pvp.infraestructure.repositories;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.JdbcTemplate;
 import com.groupbcnc.pvp.domain.exceptions.PromotionNotFoundException;
@@ -17,7 +17,7 @@ public class H2PromotionRepository implements PromotionRepository {
     }
 
     @Override
-    public Promotion getPromotionByProductCodeAndDate(int productId, Date applicationTime)
+    public Promotion getPromotionByProductCodeAndDate(int productId, LocalDateTime applicationTime)
             throws PromotionNotFoundException {
         String query = "SELECT * " +
                 "FROM promotions " +

@@ -1,8 +1,7 @@
 package com.groupbcnc.pvp.domain.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import java.util.UUID;
-
 import lombok.Getter;
 
 public class Promotion {
@@ -11,10 +10,11 @@ public class Promotion {
     private @Getter int off;
     private @Getter int productId;
     private @Getter int priority;
-    private @Getter Date startDate;
-    private @Getter Date endDate;
+    private @Getter LocalDateTime startDate;
+    private @Getter LocalDateTime endDate;
 
-    public Promotion(int id, UUID code, int productId, int off, int priority, Date startDate, Date endDate) {
+    public Promotion(int id, UUID code, int productId, int off, int priority, LocalDateTime startDate,
+            LocalDateTime endDate) {
         this.id = id;
         this.code = code;
         this.productId = productId;

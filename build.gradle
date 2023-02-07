@@ -12,6 +12,8 @@ configurations {
 	compileOnly {
 		extendsFrom annotationProcessor
 	}
+    integrationTestImplementation.extendsFrom(testImplementation)
+    integrationTestRuntimeOnly.extendsFrom(testRuntimeOnly)
 }
 
 repositories {
@@ -33,6 +35,7 @@ dependencies {
 	testImplementation 'org.testcontainers:junit-jupiter'
 	runtimeOnly 'com.h2database:h2:2.1.214'
 	implementation 'org.flywaydb:flyway-core:9.14.1'
+	testRuntimeOnly 'com.h2database:h2'
 }
 
 dependencyManagement {
@@ -51,4 +54,20 @@ mainClassName = "com.groupbcnc.Application"
 
 run {
     main = mainClassName
+}
+
+sourceSets {
+    integrationTest {
+        java {
+            compileClasspath += main.output + test.output
+            runtimeClasspath += main.output + test.output
+        }
+    }
+}
+
+task integrationTest(type: Test) {
+    description = "Run integration tests"
+    group = "integration-test"
+    testClassesDirs = sourceSets.integrationTest.output.classesDirs
+    classpath = sourceSets.integrationTest.runtimeClasspath
 }

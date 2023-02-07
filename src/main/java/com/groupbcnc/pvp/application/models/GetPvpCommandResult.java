@@ -1,16 +1,17 @@
 package com.groupbcnc.pvp.application.models;
 
-import java.util.Date;
+import java.time.LocalDateTime;
 import lombok.Getter;
 
 public class GetPvpCommandResult {
     private @Getter float price;
-    private @Getter float offApplied;
+    private @Getter int offApplied;
     private @Getter float pvp;
     private @Getter String promotionCode;
-    private @Getter Date applicationTime;
+    private @Getter LocalDateTime applicationTime;
 
-    public GetPvpCommandResult(float price, float offApplied, float pvp, String promotionCode, Date applicationTime) {
+    public GetPvpCommandResult(float price, int offApplied, float pvp, String promotionCode,
+            LocalDateTime applicationTime) {
         this.price = price;
         this.offApplied = offApplied;
         this.pvp = pvp;

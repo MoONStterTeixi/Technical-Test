@@ -1,8 +1,8 @@
 package com.groupbcnc.pvp.application.services;
 
-import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.Currency;
-import java.util.Date;
 import java.util.UUID;
 import org.junit.Test;
 import org.mockito.Mockito;
@@ -22,15 +22,19 @@ import static org.mockito.Mockito.when;
 
 public class GetPvpUseCaseTest {
 
+        private static final DateTimeFormatter SOME_FORMATER = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss");
+
         private static final UUID SOME_BRAND_CODE = UUID.randomUUID();
         private static final UUID SOME_PRODUCT_CODE = UUID.randomUUID();
         private static final UUID SOME_PROMOTION_CODE = UUID.randomUUID();
         private static final int SOME_PRODUCT_ID = 1;
         private static final int SOME_BRAND_ID = 1;
         private static final int SOME_PROMOTION_ID = 1;
-        private static final Date SOME_TIME = new Date();
-        private static Date SOME_PROMOTION_START_DATE = Date.from(Instant.parse("2023-02-01T00:00:00Z"));
-        private static Date SOME_PROMOTION_END_DATE = Date.from(Instant.parse("2023-02-10T00:00:00Z"));
+        private static final LocalDateTime SOME_TIME = LocalDateTime.now();
+        private static LocalDateTime SOME_PROMOTION_START_DATE = LocalDateTime.parse("2023-02-01 00:00:00",
+                        SOME_FORMATER);
+        private static LocalDateTime SOME_PROMOTION_END_DATE = LocalDateTime.parse("2023-02-10 00:00:00",
+                        SOME_FORMATER);
         private static final float SOME_PRICE_VALUE = 100f;
         private static final int SOME_OFF_APPLIED = 10;
         private static final int ZERO_OFF_APPLIED = 0;
