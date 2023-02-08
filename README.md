@@ -2,6 +2,8 @@
 
 Technical test for BCNC GROUP
 
+This application provides the retail price by applying discounts. 
+
 ## Index
 
 - Requeriments
