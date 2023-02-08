@@ -44,11 +44,12 @@ GET - /{brandCode}/{productCode}/{currency}/pvp
 
 #### Parameters
 
-> | name        | type   | description                        | exemple                              |
-> | ----------- | ------ | ---------------------------------- | ------------------------------------ |
-> | brandCode   | UUID   | Brand code identify                | ec2ae97c-3f2d-44e4-a195-c17ef510bfab |
-> | productCode | UUID   | Product code identify              | 48bd8f04-f983-4718-b918-d788e11dcade |
-> | currency    | String | The currency for the product price | EUR                                  |
+> | name          | type   | description                                                                        | exemple                              |
+> | ------------- | ------ | ---------------------------------------------------------------------------------- | ------------------------------------ |
+> | brandCode     | UUID   | Brand code identify                                                                | ec2ae97c-3f2d-44e4-a195-c17ef510bfab |
+> | productCode   | UUID   | Product code identify                                                              | 48bd8f04-f983-4718-b918-d788e11dcade |
+> | currency      | String | The currency for the product price                                                 | EUR                                  |
+> | `currentTime` | `none` | `Internally we get the current time of the interaction, for security is not param` | `none`                               |
 
 #### Responses
 
